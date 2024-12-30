@@ -95,7 +95,7 @@ public class TrackerDataService(ApiClient apiClient, IServiceProvider servicePro
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             // Получение уникальных ников из таблицы PlayerStatsHistories
-            var nicknames = await dbContext.PlayerStatsHistories
+            var nicknames = await dbContext.PlayersStats
                 .Select(p => p.Nickname)
                 .Distinct()
                 .ToListAsync();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WarfaceAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49ba51def98abf144f3fd2fce09c3ced86f87937")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66df76d30a08206273bf9860fdde73ae5d57957a")]
 [assembly: System.Reflection.AssemblyProductAttribute("WarfaceAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WarfaceAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
