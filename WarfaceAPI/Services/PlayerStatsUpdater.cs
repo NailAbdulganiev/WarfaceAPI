@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using WarfaceAPI.Data;
+
 namespace WarfaceAPI.Services;
 
 // BackgroundService реализует интерфейс IHostedSerivce
@@ -12,8 +15,7 @@ public class PlayerStatsUpdater(IServiceProvider serviceProvider) : BackgroundSe
             using (var scope = _serviceProvider.CreateScope())
             {
                 var trackerService = scope.ServiceProvider.GetRequiredService<TrackerDataService>();
-                // Список игроков для трекинга можно получить из базы данных
-                var nicknames = new[] { "ЛюблюНорвегию" };
+                var nicknames = await trackerService.GetUniqueNicknamesAsync();
                 foreach (var nickname in nicknames)
                 {
                     await trackerService.ChangePlayerDataAsync(nickname);

@@ -88,4 +88,19 @@ public class TrackerDataService(ApiClient apiClient, IServiceProvider servicePro
             await dbContext.SaveChangesAsync();
         }
     }
+    
+    public async Task<List<string>> GetUniqueNicknamesAsync()
+    {
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            // Получение уникальных ников из таблицы PlayerStatsHistories
+            var nicknames = await dbContext.PlayerStatsHistories
+                .Select(p => p.Nickname)
+                .Distinct()
+                .ToListAsync();
+
+            return nicknames;
+        }
+    }
 }
