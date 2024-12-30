@@ -8,9 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Регистрируем сервисы
-builder.Services.AddHttpClient<WarfaceApiService>();
-builder.Services.AddScoped<UserService>();
+// Регистрируем ApiClient с использованием IHttpClientFactory
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<ApiClient>();
+
+// Регистрация TrackerDataService
+builder.Services.AddScoped<TrackerDataService>();
+
+// Регистрация фонового сервиса
+builder.Services.AddHostedService<PlayerStatsUpdater>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

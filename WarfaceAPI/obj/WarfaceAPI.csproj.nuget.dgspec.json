@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ms-se\\Desktop\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj": {}
+    "C:\\Users\\Счастливый Наиль\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ms-se\\Desktop\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj": {
+    "C:\\Users\\Счастливый Наиль\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ms-se\\Desktop\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Счастливый Наиль\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj",
         "projectName": "WarfaceAPI",
-        "projectPath": "C:\\Users\\ms-se\\Desktop\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj",
-        "packagesPath": "C:\\Users\\ms-se\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ms-se\\Desktop\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\obj\\",
+        "projectPath": "C:\\Users\\Счастливый Наиль\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\WarfaceAPI.csproj",
+        "packagesPath": "C:\\Users\\Счастливый Наиль\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Счастливый Наиль\\RiderProjects\\WarfaceAPI\\WarfaceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ms-se\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Счастливый Наиль\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

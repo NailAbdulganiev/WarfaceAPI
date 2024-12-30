@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "3C5Ksn/HsZn6IxgOYIHCCtvCWgiDgwV4NBZWIoaDtPs=",
+  "Hash": "i35N7UUlS5C+Gb+3nBcAr4VbaU7yzambGcmBUuSxMFg=",
   "Source": "WarfaceAPI",
   "BasePath": "_content/WarfaceAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
