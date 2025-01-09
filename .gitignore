@@ -1,3 +1,5 @@
 .idea
 global.json
+/WarfaceAPI/bin
+/WarfaceAPI/obj
 

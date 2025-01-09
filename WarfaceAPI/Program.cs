@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем строку подключения к PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionToWarfaceDb")));
 
 // Регистрируем ApiClient с использованием IHttpClientFactory
 builder.Services.AddHttpClient();
