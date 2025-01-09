@@ -8,13 +8,11 @@ namespace WarfaceAPI.Controllers;
 
 public class PlayerStatsController(TrackerDataService trackerDataService) : ControllerBase
 {
-    private readonly TrackerDataService _trackerDataService = trackerDataService;
-
     [HttpGet("{nickname}")]
     public async Task<IActionResult> GetPlayerStats(string nickname)
     {
         // Получение текущей статистики
-        var playerStats = await _trackerDataService.GetPlayerDataAsync(nickname);
+        var playerStats = await trackerDataService.GetPlayerDataAsync(nickname);
 
         if (playerStats == null)
         {
@@ -28,7 +26,7 @@ public class PlayerStatsController(TrackerDataService trackerDataService) : Cont
     public async Task<IActionResult> TrackPlayerStats(string nickname)
     {
         // Обновление данных игрока и сохранение изменений
-        await _trackerDataService.ChangePlayerDataAsync(nickname);
+        await trackerDataService.ChangePlayerDataAsync(nickname);
 
         return Ok($"Данные игрока {nickname} обновлены.");
     }

@@ -285,3 +285,5 @@ C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj
 C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj\Debug\net8.0\WarfaceAPI.pdb
 C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj\Debug\net8.0\WarfaceAPI.genruntimeconfig.cache
 C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj\Debug\net8.0\ref\WarfaceAPI.dll
+C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj\Debug\net8.0\WarfaceAPI.RazorAssemblyInfo.cache
+C:\Users\Счастливый Наиль\RiderProjects\WarfaceAPI\WarfaceAPI\obj\Debug\net8.0\WarfaceAPI.RazorAssemblyInfo.cs

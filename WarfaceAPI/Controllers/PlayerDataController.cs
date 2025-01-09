@@ -8,8 +8,6 @@ namespace WarfaceAPI.Controllers;
 
 public class PlayerDataController(PlayerDataService playerDataService) : ControllerBase
 {
-    private readonly PlayerDataService _playerDataService = playerDataService;
-
     // Конструктор для контроллера на основе сервиса PlayerDataService
 
     [HttpPost("Save-PlayerData")]
@@ -17,7 +15,7 @@ public class PlayerDataController(PlayerDataService playerDataService) : Control
     {
         try
         {
-            await _playerDataService.SavePlayerDataAsync(nickname);
+            await playerDataService.SavePlayerDataAsync(nickname);
             return Ok("Player data succesfully saved.");
         }
         catch (Exception e)

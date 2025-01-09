@@ -6,13 +6,11 @@ namespace WarfaceAPI.Services;
 // BackgroundService реализует интерфейс IHostedSerivce
 public class PlayerStatsUpdater(IServiceProvider serviceProvider) : BackgroundService
 {
-    private readonly IServiceProvider _serviceProvider = serviceProvider;
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            using (var scope = _serviceProvider.CreateScope())
+            using (var scope = serviceProvider.CreateScope())
             {
                 var trackerService = scope.ServiceProvider.GetRequiredService<TrackerDataService>();
                 var nicknames = await trackerService.GetUniqueNicknamesAsync();

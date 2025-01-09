@@ -1,0 +1,198 @@
+@page
+@model WarfaceAPI.Pages.PlayerStatsSearch
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Stats</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+<div>
+    <h1>Поиск статистики игрока</h1>
+    <form id="playerStatsForm">
+        <label for="nickname">Введите никнейм:</label>
+        <input type="text" id="nickname" name="nickname" />
+        <button type="submit">Показать</button>
+    </form>
+</div>
+
+<div>
+    <h2>Статистика игрока</h2>
+    <div id="chartsContainer">
+        <canvas id="pveChart"></canvas>
+        <canvas id="pvpChart"></canvas>
+        <canvas id="overallChart"></canvas>
+    </div>
+</div>
+<style>
+    canvas {
+        height: 600px; /* Фиксированная высота графика */
+        width: auto; /* Автоматическая ширина */
+        display: block;
+        margin: 0 auto; /* Центрируем графики */
+    }
+</style>
+
+<script>
+    let pveChart, pvpChart, overallChart; // Глобальные переменные для хранения графиков
+
+    document.getElementById('playerStatsForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const nickname = document.getElementById('nickname').value;
+
+        if (!nickname) {
+            alert("Введите никнейм!");
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/PlayerStatsQuery/stats/${nickname}`);
+            if (!response.ok) {
+                const message = await response.text();
+                alert(message);
+                return;
+            }
+
+            const data = await response.json();
+
+            // Очищаем старые графики
+            clearCharts();
+
+            // Отображение новых графиков
+            renderCharts(data);
+        } catch (error) {
+            console.error("Ошибка при получении данных:", error);
+            alert("Не удалось загрузить данные.");
+        }
+    });
+
+    function clearCharts() {
+        if (pveChart) {
+            pveChart.destroy();
+            pveChart = null;
+        }
+        if (pvpChart) {
+            pvpChart.destroy();
+            pvpChart = null;
+        }
+        if (overallChart) {
+            overallChart.destroy();
+            overallChart = null;
+        }
+    }
+
+    function renderCharts(data) {
+        const timestamps = data.map(entry => entry.timestamp);
+        const pveKills = data.map(entry => entry.pveKills);
+        const pveDeaths = data.map(entry => entry.pveDeaths);
+        const pvpKills = data.map(entry => entry.pvpKills);
+        const pvpDeaths = data.map(entry => entry.pvpDeaths);
+        const pveKd = data.map(entry => entry.pveKd);
+        const pvpKd = data.map(entry => entry.pvpKd);
+
+        // PVE Chart
+        const pveCtx = document.getElementById('pveChart').getContext('2d');
+        pveChart = new Chart(pveCtx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [
+                    { label: 'PVE Kills', data: pveKills, borderColor: 'blue', tension: 0.1, pointRadius: 3 },
+                    { label: 'PVE Deaths', data: pveDeaths, borderColor: 'red', tension: 0.1, pointRadius: 3 }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        title: { display: true, text: 'Время записи' },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+                    y: {
+                        title: { display: true, text: 'Количество' }
+                    }
+                },
+                animation: {
+                    duration: 1000
+                }
+            }
+        });
+
+        // PVP Chart
+        const pvpCtx = document.getElementById('pvpChart').getContext('2d');
+        pvpChart = new Chart(pvpCtx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [
+                    { label: 'PVP Kills', data: pvpKills, borderColor: 'green', tension: 0.1, pointRadius: 3 },
+                    { label: 'PVP Deaths', data: pvpDeaths, borderColor: 'orange', tension: 0.1, pointRadius: 3 }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        title: { display: true, text: 'Время записи' },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+                    y: {
+                        title: { display: true, text: 'Количество' }
+                    }
+                },
+                animation: {
+                    duration: 1000
+                }
+            }
+        });
+
+        // Overall KD Chart
+        const overallCtx = document.getElementById('overallChart').getContext('2d');
+        overallChart = new Chart(overallCtx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [
+                    { label: 'PVE KD', data: pveKd, borderColor: 'purple', tension: 0.1, pointRadius: 3 },
+                    { label: 'PVP KD', data: pvpKd, borderColor: 'brown', tension: 0.1, pointRadius: 3 }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        title: { display: true, text: 'Время записи' },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+                    y: {
+                        title: { display: true, text: 'КД' }
+                    }
+                },
+                animation: {
+                    duration: 1000
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

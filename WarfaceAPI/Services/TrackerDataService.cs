@@ -19,8 +19,6 @@ namespace WarfaceAPI.Services;
 
 public class TrackerDataService(ApiClient apiClient, IServiceProvider serviceProvider)
 {
-    private readonly IServiceProvider _serviceProvider = serviceProvider;
-    
     // Получение данных об игроке (Убийства, смерти, КД)
     public async Task<PlayerStats?> GetPlayerDataAsync(string nickname)
     {
@@ -40,7 +38,7 @@ public class TrackerDataService(ApiClient apiClient, IServiceProvider servicePro
             return;
         }
 
-        using (var scope = _serviceProvider.CreateScope())
+        using (var scope = serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             
@@ -73,7 +71,6 @@ public class TrackerDataService(ApiClient apiClient, IServiceProvider servicePro
                 await dbContext.PlayerStatsHistories.AddAsync(historyEntry);
                 
                 // Обновляем текущие данные
-
                 existingPlayer.PvpKills = playerStats.PvpKills;
                 existingPlayer.PvpDeath = playerStats.PvpDeath;
                 existingPlayer.PvpKd = playerStats.PvpKd;
@@ -91,7 +88,7 @@ public class TrackerDataService(ApiClient apiClient, IServiceProvider servicePro
     
     public async Task<List<string>> GetUniqueNicknamesAsync()
     {
-        using (var scope = _serviceProvider.CreateScope())
+        using (var scope = serviceProvider.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             // Получение уникальных ников из таблицы PlayerStatsHistories

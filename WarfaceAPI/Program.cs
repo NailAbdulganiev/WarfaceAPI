@@ -18,6 +18,9 @@ builder.Services.AddScoped<TrackerDataService>();
 // Регистрация фонового сервиса
 builder.Services.AddHostedService<PlayerStatsUpdater>();
 
+// Добавление Razor Pages
+builder.Services.AddRazorPages(); 
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -29,6 +32,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles();
+app.UseRouting();
+
+// Настройка маршрутов для Razor Pages
+app.MapRazorPages(); 
 
 app.UseHttpsRedirection();
 app.MapControllers();
